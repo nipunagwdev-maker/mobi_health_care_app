@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const kMainColor = Color.fromARGB(255, 9, 74, 111);
-const kSecondaryColor = Color.fromARGB(255, 128, 232, 255);
+const kSecondaryColor = Color.fromARGB(255, 0, 208, 255);
 const kMainRedColor = Colors.redAccent;
 
 const kwidghtBgColor = Color.fromARGB(255, 142, 143, 142);

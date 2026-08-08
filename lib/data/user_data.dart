@@ -23,5 +23,18 @@ User user = User(
       successfullyDrinked: false,
       medicineId: 7,
     ),
+    Medicine(
+      medicineName: "Ibuprofen",
+      medicineDose: "1 tablet after lunch",
+      successfullyDrinked: false,
+      medicineId: 5,
+    ),
+
+    Medicine(
+      medicineName: "Aspirin",
+      medicineDose: "1 tablet every morning",
+      successfullyDrinked: true,
+      medicineId: 6,
+    ),
   ],
 );

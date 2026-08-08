@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:mobi_health_care_app/constants/colors.dart';
 import 'package:mobi_health_care_app/data/medicine_data.dart';
 import 'package:mobi_health_care_app/data/user_data.dart';
+import 'package:mobi_health_care_app/models/medicine_model.dart';
 import 'package:mobi_health_care_app/widgets/date_card_main.dart';
 import 'package:mobi_health_care_app/widgets/medicine_card.dart';
 import 'package:mobi_health_care_app/widgets/medicine_item_card.dart';
@@ -133,18 +134,48 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Today's Medications",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w900,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        //vertical: kMainPadding,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Today's Medications",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                          Text(
+                            "See all",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: kSecondaryColor,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
 
-                    const SizedBox(height: 10),
-
                     //list widgets i'm gonna make
-                    MedicineItemCard(),
+
+                    //make a list veiw  for medicines
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: userData.medicineList.length,
+                      itemBuilder: (context, index) {
+                        Medicine mediListBlock = userData.medicineList[index];
+                        return MedicineItemCard(
+                          medicineName: mediListBlock.medicineName,
+                          medicineDose: mediListBlock.medicineDose,
+                          isCompleted: mediListBlock.successfullyDrinked,
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
