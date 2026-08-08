@@ -3,8 +3,7 @@ import 'package:mobi_health_care_app/constants/colors.dart';
 import 'package:mobi_health_care_app/data/medicine_data.dart';
 import 'package:mobi_health_care_app/data/user_data.dart';
 
-import 'package:flutter/cupertino.dart';
-
+// ignore: must_be_immutable
 class MedicineCard extends StatefulWidget {
   int totalNumberOfMedicines;
   int numberOfDrinkedMedicines;

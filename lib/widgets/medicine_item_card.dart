@@ -26,7 +26,7 @@ class _MedicineItemCardState extends State<MedicineItemCard> {
       decoration: BoxDecoration(
         color: kMainWhite,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: kSecondaryColor.withAlpha(175), width: 0.5),
+        border: Border.all(color: kSecondaryColor.withAlpha(075), width: 0.25),
         boxShadow: [
           BoxShadow(
             color: Colors.black12,

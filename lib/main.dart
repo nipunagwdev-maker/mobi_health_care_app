@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobi_health_care_app/constants/colors.dart';
-import 'package:mobi_health_care_app/pages/add_medicine.dart';
+import 'package:mobi_health_care_app/pages/add_medicine_page.dart';
 import 'package:mobi_health_care_app/pages/home_page.dart';
 import 'package:mobi_health_care_app/pages/profile_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,7 +20,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   //making a index for the rendering pages' list
   int _currentIndex = 0;
-  final List<Widget> _pages = [HomePage(), AddMedicine(), ProfilePage()];
+  final List<Widget> _pages = [HomePage(), AddMedicinePage(), ProfilePage()];
 
   @override
   Widget build(BuildContext context) {
