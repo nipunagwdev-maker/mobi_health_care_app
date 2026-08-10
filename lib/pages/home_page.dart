@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                           physics: NeverScrollableScrollPhysics(),
                           itemCount: userData.medicineList.length,
                           itemBuilder: (context, index) {
-                            Medicine mediListBlock =
+                            final Medicine mediListBlock =
                                 userData.medicineList[index];
                             return MedicineItemCard(
                               medicineName: mediListBlock.medicineName,

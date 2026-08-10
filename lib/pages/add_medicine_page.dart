@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobi_health_care_app/constants/colors.dart';
+import 'package:mobi_health_care_app/models/medicine_model.dart';
+import 'package:mobi_health_care_app/models/user_model.dart';
+import 'package:mobi_health_care_app/data/user_data.dart';
 
 class AddMedicinePage extends StatefulWidget {
   const AddMedicinePage({super.key});
@@ -60,7 +63,7 @@ class _AddMedicinePageState extends State<AddMedicinePage> {
                 children: [
                   Container(
                     width: double.infinity,
-                    height: 200,
+
                     decoration: BoxDecoration(
                       color: kMainWhite,
                       borderRadius: BorderRadius.circular(12),
@@ -74,7 +77,7 @@ class _AddMedicinePageState extends State<AddMedicinePage> {
                       ],
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(kMainPadding),
+                      padding: const EdgeInsets.all(kMainPadding * 2),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -111,10 +114,14 @@ class _AddMedicinePageState extends State<AddMedicinePage> {
 
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(14),
-                                borderSide: BorderSide(@override
-                                dynamic noSuchMethod(Invocation invocation) {
-                                  
-                                }),
+                                borderSide: BorderSide.none,
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14),
+                                borderSide: BorderSide(
+                                  color: kSecondaryColor,
+                                  width: 1.5,
+                                ),
                               ),
                               //focusColor: kMainBlack.withAlpha(050)
                             ),
@@ -123,6 +130,91 @@ class _AddMedicinePageState extends State<AddMedicinePage> {
                               fontSize: 15,
                               color: kMainBlack,
                               fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(height: 15),
+
+                          Text(
+                            "MEDICINE DOSE",
+                            style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.black54,
+                            ),
+                          ),
+
+                          const SizedBox(height: 5),
+
+                          //does section
+                          TextField(
+                            controller: doseController,
+                            //hint text desings
+                            decoration: InputDecoration(
+                              hintText: "e.g. 2 tablets after dinner",
+                              hintStyle: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.normal,
+                                color: kwidghtBgColor.withAlpha(150),
+                              ),
+
+                              //box design
+                              filled: true,
+                              fillColor: kwidghtBgColor.withAlpha(040),
+                              contentPadding: EdgeInsets.symmetric(
+                                horizontal: kMainPadding,
+                              ),
+
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14),
+                                borderSide: BorderSide.none,
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14),
+                                borderSide: BorderSide(
+                                  color: kSecondaryColor,
+                                  width: 1.5,
+                                ),
+                              ),
+                              //focusColor: kMainBlack.withAlpha(050)
+                            ),
+                            //input text design
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: kMainBlack,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+
+                          const SizedBox(height: 20),
+
+                          //make the text filed inputs accessable
+                          //need to check again
+                          ElevatedButton(
+                            onPressed: () {
+                              String name = nameController.text;
+                              String dose = doseController.text;
+
+                              if (name.isEmpty || dose.isEmpty) {
+                                return; //stop here, since nothing entered.
+                              }
+
+                              setState(() {
+                                user.medicineList.add(
+                                  Medicine(
+                                    medicineName: name,
+                                    medicineDose: dose,
+                                    successfullyDrinked: false,
+                                    medicineId: user.medicineList.length,
+                                  ),
+                                );
+                              });
+                              nameController.clear();
+                              doseController.clear();
+                              Navigator.pop(context);
+                            },
+                            child: Text(
+                              "Save  Medicine",
+                              style: TextStyle(color: kMainRedColor),
                             ),
                           ),
                         ],
