@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobi_health_care_app/constants/colors.dart';
 import 'package:mobi_health_care_app/models/medicine_model.dart';
-import 'package:mobi_health_care_app/models/user_model.dart';
+
 import 'package:mobi_health_care_app/data/user_data.dart';
 
 class AddMedicinePage extends StatefulWidget {
@@ -210,7 +210,6 @@ class _AddMedicinePageState extends State<AddMedicinePage> {
                               });
                               nameController.clear();
                               doseController.clear();
-                              Navigator.pop(context);
                             },
                             child: Text(
                               "Save  Medicine",

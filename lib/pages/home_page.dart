@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mobi_health_care_app/constants/colors.dart';
+
 import 'package:mobi_health_care_app/data/medicine_data.dart';
 import 'package:mobi_health_care_app/data/user_data.dart';
 import 'package:mobi_health_care_app/models/medicine_model.dart';
 import 'package:mobi_health_care_app/widgets/date_card_main.dart';
 import 'package:mobi_health_care_app/widgets/medicine_card.dart';
 import 'package:mobi_health_care_app/widgets/medicine_item_card.dart';
-//import 'package:mobi_health_care_app/widgets/medicine_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -93,12 +93,7 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(height: 20),
 
                       //premade medicine card widget, that shows the process
-                      Expanded(
-                        child: MedicineCard(
-                          numberOfDrinkedMedicines: 5,
-                          totalNumberOfMedicines: 10,
-                        ),
-                      ),
+                      Expanded(child: MedicineCard()),
                       const SizedBox(height: 15),
                     ],
                   ),
@@ -178,6 +173,14 @@ class _HomePageState extends State<HomePage> {
                               medicineName: mediListBlock.medicineName,
                               medicineDose: mediListBlock.medicineDose,
                               isCompleted: mediListBlock.successfullyDrinked,
+
+                              onTapCheck: () {
+                                setState(() {
+                                  //make the marke down  method for successfylly drinked medicines
+                                  mediListBlock.successfullyDrinked =
+                                      !mediListBlock.successfullyDrinked;
+                                });
+                              },
                             );
                           },
                         ),

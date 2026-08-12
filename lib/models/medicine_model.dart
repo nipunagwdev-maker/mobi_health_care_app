@@ -1,7 +1,7 @@
 class Medicine {
   final String medicineName;
   final String medicineDose;
-  final bool successfullyDrinked;
+  bool successfullyDrinked;
   final int medicineId;
 
   Medicine({

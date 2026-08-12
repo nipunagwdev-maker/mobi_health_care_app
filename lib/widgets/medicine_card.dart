@@ -5,22 +5,23 @@ import 'package:mobi_health_care_app/data/user_data.dart';
 
 // ignore: must_be_immutable
 class MedicineCard extends StatefulWidget {
-  int totalNumberOfMedicines;
-  int numberOfDrinkedMedicines;
+  //int total = 10;
+  //int numberOfDrinkedMedicines = 0;
 
-  MedicineCard({
-    super.key,
-    required this.totalNumberOfMedicines,
-
-    required this.numberOfDrinkedMedicines,
-  });
+  // ignore: prefer_const_constructors_in_immutables
+  MedicineCard({super.key});
 
   @override
   State<MedicineCard> createState() => _MedicineCardState();
 }
 
 class _MedicineCardState extends State<MedicineCard> {
-  var total = user.medicineList.length;
+  //calculate the ttla medicines they took.
+  int get total => user.medicineList.length;
+  int get taken => user.medicineList
+      .where((medicine) => medicine.successfullyDrinked)
+      .length;
+
   //user data
   final userData = user;
 
@@ -31,9 +32,8 @@ class _MedicineCardState extends State<MedicineCard> {
   Widget build(BuildContext context) {
     //how many medicine taken
     //update in way that matcing for later calculations
-    double progressValue =
-        (widget.numberOfDrinkedMedicines / widget.totalNumberOfMedicines)
-            .toDouble();
+    double progressValue = taken == 0 ? 0 : taken / total;
+    //double progressValue = (taken / total).toDouble();
 
     return Container(
       width: double.infinity,
@@ -73,7 +73,7 @@ class _MedicineCardState extends State<MedicineCard> {
                 //taken amount need to calculate and put here
                 //but for now, we just gonna add it as hardcode
                 Text(
-                  "${widget.numberOfDrinkedMedicines.toString()}/ ${widget.totalNumberOfMedicines.toString()} taken",
+                  "${taken.toString()}/ ${total.toString()} taken",
                   style: TextStyle(
                     fontSize: 12.5,
                     color: kSecondaryColor,

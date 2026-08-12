@@ -2,22 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobi_health_care_app/constants/colors.dart';
 
-class MedicineItemCard extends StatefulWidget {
+class MedicineItemCard extends StatelessWidget {
   final String medicineName;
   final String medicineDose;
   final bool isCompleted;
+  final VoidCallback onTapCheck;
   const MedicineItemCard({
     super.key,
     required this.medicineName,
     required this.medicineDose,
     required this.isCompleted,
+    required this.onTapCheck,
   });
 
-  @override
-  State<MedicineItemCard> createState() => _MedicineItemCardState();
-}
-
-class _MedicineItemCardState extends State<MedicineItemCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -63,7 +60,8 @@ class _MedicineItemCardState extends State<MedicineItemCard> {
               children: [
                 //you need to change the medicine name later according to the list
                 Text(
-                  "${widget.medicineName}",
+                  // ignore: unnecessary_string_interpolations
+                  "$medicineName",
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w800,
@@ -75,7 +73,8 @@ class _MedicineItemCardState extends State<MedicineItemCard> {
 
                 //dose of the medicine, you need to change this later according to the mediList.
                 Text(
-                  "${widget.medicineDose}",
+                  // ignore: unnecessary_string_interpolations
+                  "$medicineDose",
                   style: TextStyle(
                     fontSize: 12,
                     color: kwidghtBgColor,
@@ -89,19 +88,26 @@ class _MedicineItemCardState extends State<MedicineItemCard> {
           ),
           Padding(
             padding: const EdgeInsets.only(right: kMainPadding * 1.75),
-            child: Container(
-              height: 32.5,
-              width: 32.5,
-              decoration: BoxDecoration(
-                color: kSecondaryColor,
-                border: Border.all(color: kSecondaryColor, width: 2),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Icon(
-                CupertinoIcons.check_mark,
-                fontWeight: FontWeight.w900,
-                size: 15,
-                color: kMainWhite,
+            child: Material(
+              child: InkWell(
+                onTap: onTapCheck,
+                child: Container(
+                  height: 32.5,
+                  width: 32.5,
+                  decoration: BoxDecoration(
+                    color: isCompleted
+                        ? kSecondaryColor
+                        : kwidghtBgColor.withAlpha(030),
+                    border: Border.all(color: kSecondaryColor, width: 1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Icon(
+                    CupertinoIcons.check_mark,
+                    fontWeight: FontWeight.w900,
+                    size: 16,
+                    color: isCompleted ? kMainWhite : kwidghtBgColor,
+                  ),
+                ),
               ),
             ),
           ),
