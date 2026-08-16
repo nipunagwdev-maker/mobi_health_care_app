@@ -20,7 +20,7 @@ User user = User(
     Medicine(
       medicineName: "Vitamin C",
       medicineDose: "1 tablet after breakfast",
-      successfullyDrinked: true,
+      successfullyDrinked: false,
       medicineId: 1,
     ),
 
