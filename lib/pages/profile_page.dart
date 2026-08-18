@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mobi_health_care_app/constants/colors.dart';
 import 'package:mobi_health_care_app/data/user_data.dart';
 import 'package:mobi_health_care_app/widgets/profile_page_card.dart';
+import 'package:mobi_health_care_app/widgets/user_details_card.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -16,6 +17,7 @@ class _ProfilePageState extends State<ProfilePage> {
   int get taken => user.medicineList
       .where((medicine) => medicine.successfullyDrinked)
       .length;
+  final userData = user;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    "Nipuna Madhuranga",
+                    // ignore: unnecessary_string_interpolations
+                    "${userData.userName}",
                     style: TextStyle(
                       color: kMainWhite,
                       fontWeight: FontWeight.w900,
@@ -105,7 +108,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       ProfilePageCard(
                         profileCardTitleName: "AGE",
-                        profileCardValue: 23,
+                        profileCardValue: userData.age,
                       ),
                     ],
                   ),
@@ -118,6 +121,32 @@ class _ProfilePageState extends State<ProfilePage> {
                       fontWeight: FontWeight.w900,
                     ),
                   ),
+                  const SizedBox(height: kMainPadding),
+                  //widget for profile page
+                  UserDetailsCard(
+                    titleOfTheCard: "Full Name",
+                    contentForTitleCard: userData.userName,
+                    iconData: Icons.person,
+                  ),
+                  const SizedBox(height: 10),
+                  UserDetailsCard(
+                    titleOfTheCard: "Age",
+                    contentForTitleCard: userData.age.toString(),
+                    iconData: Icons.person,
+                  ),
+                  const SizedBox(height: 10),
+                  UserDetailsCard(
+                    titleOfTheCard: "Full Name",
+                    contentForTitleCard: userData.userName,
+                    iconData: Icons.person,
+                  ),
+                  const SizedBox(height: 10),
+                  UserDetailsCard(
+                    titleOfTheCard: "Full Name",
+                    contentForTitleCard: userData.userName,
+                    iconData: Icons.person,
+                  ),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),

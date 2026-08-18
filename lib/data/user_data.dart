@@ -2,7 +2,7 @@ import 'package:mobi_health_care_app/models/medicine_model.dart';
 import 'package:mobi_health_care_app/models/user_model.dart';
 
 User user = User(
-  userName: "P.Thushaniga",
+  userName: "Nihal Shantha",
   userId: "a0001",
   userGender: "Male",
   age: 40,

@@ -48,6 +48,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: kwidghtBgColor.withAlpha(010),
       body: SafeArea(
+        top: false,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
 
-                      const SizedBox(height: 12),
+                      //const SizedBox(height: 12),
                       //list widgets i'm gonna make
 
                       //make a list veiw  for medicines
