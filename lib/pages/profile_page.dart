@@ -1,6 +1,8 @@
-import 'package:flutter/cupertino.dart';
+//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobi_health_care_app/constants/colors.dart';
+import 'package:mobi_health_care_app/data/user_data.dart';
+import 'package:mobi_health_care_app/widgets/profile_page_card.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -10,6 +12,11 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  int get total => user.medicineList.length;
+  int get taken => user.medicineList
+      .where((medicine) => medicine.successfullyDrinked)
+      .length;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,7 +45,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     style: TextStyle(
                       color: kMainWhite,
                       fontWeight: FontWeight.w900,
-                      fontSize: 18,
+                      fontSize: 20,
                     ),
                   ),
                   Row(
@@ -46,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Text(
                         //age of the user
-                        "23 yrs",
+                        "Emergency +94761178865",
                         style: TextStyle(
                           fontSize: 12,
                           color: kMainWhite,
@@ -83,29 +90,33 @@ class _ProfilePageState extends State<ProfilePage> {
             Padding(
               padding: const EdgeInsets.all(kMainPadding),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        height: 100,
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        decoration: BoxDecoration(
-                          color: Colors.redAccent,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Column(
-                          children: [
-                            Text(
-                              "6",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 45,
-                              ),
-                            ),
-                          ],
-                        ),
+                      ProfilePageCard(
+                        profileCardTitleName: "STREAK",
+                        profileCardValue: 05,
+                      ),
+                      ProfilePageCard(
+                        profileCardTitleName: "MEDICINES",
+                        profileCardValue: total,
+                      ),
+                      ProfilePageCard(
+                        profileCardTitleName: "AGE",
+                        profileCardValue: 23,
                       ),
                     ],
+                  ),
+                  const SizedBox(height: 15),
+                  Text(
+                    "Health Profile",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: kMainColor,
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
                 ],
               ),
