@@ -4,6 +4,7 @@ class User {
   final String userName;
   final String userId;
   final String userGender;
+  final String userAddress;
   final int age;
   final String userDescription;
   final int totalDaysTookMedicine;
@@ -20,5 +21,6 @@ class User {
     required this.totalDaysTookMedicine,
     required this.remainindDaysForTreatment,
     required this.medicineList,
+    required this.userAddress,
   });
 }

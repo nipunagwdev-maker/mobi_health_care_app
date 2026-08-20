@@ -115,7 +115,7 @@ class _AddMedicinePageState extends State<AddMedicinePage> {
                               Text(
                                 "MEDICINE NAME",
                                 style: TextStyle(
-                                  fontSize: 11,
+                                  fontSize: 12,
                                   fontWeight: FontWeight.w900,
                                   color: Colors.black54,
                                 ),
@@ -168,7 +168,7 @@ class _AddMedicinePageState extends State<AddMedicinePage> {
                               Text(
                                 "MEDICINE DOSE",
                                 style: TextStyle(
-                                  fontSize: 11,
+                                  fontSize: 12,
                                   fontWeight: FontWeight.w900,
                                   color: Colors.black54,
                                 ),
@@ -242,9 +242,17 @@ class _AddMedicinePageState extends State<AddMedicinePage> {
                                   nameController.clear();
                                   doseController.clear();
                                 },
-                                child: Text(
-                                  "Save  Medicine",
-                                  style: TextStyle(color: kMainRedColor),
+
+                                child: Container(
+                                  height: 20,
+                                  //width: 20,
+                                  child: Text(
+                                    "Save it",
+                                    style: TextStyle(
+                                      color: kMainColor,
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],

@@ -19,11 +19,11 @@ class _ProfilePageCardState extends State<ProfilePageCard> {
   Widget build(BuildContext context) {
     return Container(
       //height: 100,
-      width: MediaQuery.of(context).size.width * 0.3,
+      width: MediaQuery.of(context).size.width * 0.29,
       decoration: BoxDecoration(
         color: kMainWhite,
         borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: kMainColor, width: 0.8),
+        //border: Border.all(color: kMainColor, width: 0.8),
         boxShadow: [
           BoxShadow(
             color: Colors.black12,
@@ -39,13 +39,23 @@ class _ProfilePageCardState extends State<ProfilePageCard> {
           const SizedBox(height: kMainPadding),
           Text(
             widget.profileCardTitleName,
-            style: TextStyle(color: kMainColor, fontSize: 12),
+            style: TextStyle(
+              color: kMainRedColor,
+              fontSize: 14,
+              fontWeight: FontWeight.w900,
+            ),
           ),
 
           Text(
             widget.profileCardValue.toString(),
-            style: TextStyle(color: kMainColor, fontSize: 55),
+            style: TextStyle(
+              color: kMainColor,
+              fontSize: 80,
+              fontWeight: FontWeight.w900,
+              height: 1.0, //make the invisible  sized gap for a any text
+            ),
           ),
+          const SizedBox(height: kMainPadding),
         ],
       ),
     );

@@ -90,64 +90,80 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
 
-            Padding(
-              padding: const EdgeInsets.all(kMainPadding),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: kMainPadding),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ProfilePageCard(
-                        profileCardTitleName: "STREAK",
-                        profileCardValue: 05,
+                      const SizedBox(height: kMainPadding),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ProfilePageCard(
+                            profileCardTitleName: "STREAK",
+                            profileCardValue: 05,
+                          ),
+                          ProfilePageCard(
+                            profileCardTitleName: "MEDICINES",
+                            profileCardValue: total,
+                          ),
+                          ProfilePageCard(
+                            profileCardTitleName: "AGE",
+                            profileCardValue: userData.age,
+                          ),
+                        ],
                       ),
-                      ProfilePageCard(
-                        profileCardTitleName: "MEDICINES",
-                        profileCardValue: total,
+                      const SizedBox(height: 15),
+                      Text(
+                        "User Details",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: kMainColor,
+                          fontWeight: FontWeight.w900,
+                        ),
                       ),
-                      ProfilePageCard(
-                        profileCardTitleName: "AGE",
-                        profileCardValue: userData.age,
+                      const SizedBox(height: kMainPadding),
+
+                      //widget for profile page
+                      UserDetailsCard(
+                        titleOfTheCard: "Full Name",
+                        contentForTitleCard: userData.userName,
+                        iconData: Icons.person,
                       ),
+                      const SizedBox(height: 10),
+
+                      UserDetailsCard(
+                        titleOfTheCard: "Location",
+                        contentForTitleCard: userData.userAddress,
+                        iconData: Icons.home_filled,
+                      ),
+                      const SizedBox(height: 10),
+
+                      UserDetailsCard(
+                        titleOfTheCard: "Gender",
+                        contentForTitleCard: userData.userGender,
+                        iconData: Icons.female,
+                      ),
+                      const SizedBox(height: 10),
+
+                      UserDetailsCard(
+                        titleOfTheCard: "Age",
+                        contentForTitleCard: userData.age.toString(),
+                        iconData: Icons.calendar_month,
+                      ),
+                      const SizedBox(height: 10),
+
+                      UserDetailsCard(
+                        titleOfTheCard: "User-ID",
+                        contentForTitleCard: userData.userId,
+                        iconData: Icons.person,
+                      ),
+                      const SizedBox(height: 10),
                     ],
                   ),
-                  const SizedBox(height: 15),
-                  Text(
-                    "Health Profile",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: kMainColor,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                  const SizedBox(height: kMainPadding),
-                  //widget for profile page
-                  UserDetailsCard(
-                    titleOfTheCard: "Full Name",
-                    contentForTitleCard: userData.userName,
-                    iconData: Icons.person,
-                  ),
-                  const SizedBox(height: 10),
-                  UserDetailsCard(
-                    titleOfTheCard: "Age",
-                    contentForTitleCard: userData.age.toString(),
-                    iconData: Icons.person,
-                  ),
-                  const SizedBox(height: 10),
-                  UserDetailsCard(
-                    titleOfTheCard: "Full Name",
-                    contentForTitleCard: userData.userName,
-                    iconData: Icons.person,
-                  ),
-                  const SizedBox(height: 10),
-                  UserDetailsCard(
-                    titleOfTheCard: "Full Name",
-                    contentForTitleCard: userData.userName,
-                    iconData: Icons.person,
-                  ),
-                  const SizedBox(height: 10),
-                ],
+                ),
               ),
             ),
           ],

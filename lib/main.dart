@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromARGB(255, 237, 237, 237),
         primaryColor: kMainColor,
-        textTheme: GoogleFonts.poppinsTextTheme(
+        textTheme: GoogleFonts.manropeTextTheme(
           Theme.of(context).textTheme,
         ), //it's a new font them called  'manrope'
       ),

@@ -6,7 +6,9 @@ User user = User(
   userId: "a0001",
   userGender: "Male",
   age: 40,
-  userDescription: "Sample User Description Showing here",
+  userAddress: 'Ambalangoda, Galle',
+  userDescription:
+      "Currently working as a Lawyer and Studying for a MSc in Physcology",
   totalDaysTookMedicine: 0,
   remainindDaysForTreatment: 30,
   medicineList: [

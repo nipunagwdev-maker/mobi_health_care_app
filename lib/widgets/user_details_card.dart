@@ -7,7 +7,7 @@ class UserDetailsCard extends StatefulWidget {
   final String contentForTitleCard;
   // ignore: unused_field
   final IconData iconData;
-  UserDetailsCard({
+  const UserDetailsCard({
     super.key,
     required this.titleOfTheCard,
     required this.contentForTitleCard,
@@ -20,11 +20,14 @@ class UserDetailsCard extends StatefulWidget {
 
 class _UserDetailsCardState extends State<UserDetailsCard> {
   @override
+  // ignore: override_on_non_overriding_member
   final userData = user;
 
+  @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
+      height: MediaQuery.of(context).size.height * 0.07,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: kMainWhite,
@@ -36,9 +39,13 @@ class _UserDetailsCardState extends State<UserDetailsCard> {
         padding: const EdgeInsets.all(kMainPadding),
         child: Row(
           children: [
-            Icon(widget.iconData, size: 30),
+            Icon(widget.iconData, size: 25, color: kMainColor),
             const SizedBox(width: 10),
-            Text("${widget.titleOfTheCard} : ${widget.contentForTitleCard}"),
+            Text(
+              "${widget.titleOfTheCard} : ${widget.contentForTitleCard}",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+              overflow: TextOverflow.clip,
+            ),
           ],
         ),
       ),
