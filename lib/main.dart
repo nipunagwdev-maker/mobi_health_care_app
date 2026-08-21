@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobi_health_care_app/data/user_data.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mobi_health_care_app/constants/colors.dart';
-import 'package:mobi_health_care_app/pages/add_medicine_page.dart';
-import 'package:mobi_health_care_app/pages/home_page.dart';
-import 'package:mobi_health_care_app/pages/profile_page.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:mobi_health_care_app/pages/log-in%20process/welcome_page.dart';
+import 'package:mobi_health_care_app/pages/log-in%20process/pin_lock_page.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
+  Future<bool> checkIfSetupDone() async {
+    final prefs = await SharedPreferences.getInstance();
+    final setupDone = prefs.getBool('hasCompletedSetup') ?? false;
 
-class _MyAppState extends State<MyApp> {
-  //making a index for the rendering pages' list
-  int _currentIndex = 0;
-  final List<Widget> _pages = [HomePage(), AddMedicinePage(), ProfilePage()];
+    if (setupDone) {
+      await loadUserFromPrefs(); // 👈 ADD THIS
+    }
+
+    return setupDone;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,36 +32,21 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromARGB(255, 237, 237, 237),
         primaryColor: kMainColor,
-        textTheme: GoogleFonts.manropeTextTheme(
-          Theme.of(context).textTheme,
-        ), //it's a new font them called  'manrope'
+        textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
       ),
-      home: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: kMainColor,
-          unselectedItemColor: kwidghtBgColor,
-          currentIndex: _currentIndex,
-          onTap: (value) {
-            setState(() {
-              _currentIndex = value;
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.home, size: 30),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.add_circled, size: 30),
-              label: "Add",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.person_circle_fill, size: 30),
-              label: "Profie",
-            ),
-          ],
-        ),
-        body: _pages[_currentIndex],
+      home: FutureBuilder<bool>(
+        future: checkIfSetupDone(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Scaffold(
+              backgroundColor: kMainColor,
+              body: Center(child: CircularProgressIndicator(color: kMainWhite)),
+            );
+          }
+
+          final setupDone = snapshot.data ?? false;
+          return setupDone ? PinLockPage() : WelcomePage();
+        },
       ),
     );
   }

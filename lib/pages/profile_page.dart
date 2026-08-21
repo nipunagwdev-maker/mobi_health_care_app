@@ -56,9 +56,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Text(
                         //age of the user
-                        "Emergency +94761178865",
+                        "userID : ${userData.userId}",
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 13.5,
                           color: kMainWhite,
                           fontWeight: FontWeight.w300,
                         ),
@@ -68,7 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       Text(
                         " | ",
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 13.5,
                           color: kMainWhite,
                           fontWeight: FontWeight.w900,
                         ),
@@ -77,7 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
                       //gender of the user
                       Text(
-                        "Male",
+                        userData.userGender,
                         style: TextStyle(
                           fontSize: 12,
                           color: kMainWhite,
@@ -99,12 +99,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       const SizedBox(height: kMainPadding),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          ProfilePageCard(
-                            profileCardTitleName: "STREAK",
-                            profileCardValue: 05,
-                          ),
                           ProfilePageCard(
                             profileCardTitleName: "MEDICINES",
                             profileCardValue: total,

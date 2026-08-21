@@ -1,14 +1,14 @@
 import 'package:mobi_health_care_app/models/medicine_model.dart';
 
 class User {
-  final String userName;
-  final String userId;
-  final String userGender;
-  final String userAddress;
-  final int age;
-  final String userDescription;
-  final int totalDaysTookMedicine;
-  final int remainindDaysForTreatment;
+  String userName;
+  String userId;
+  String userGender;
+  String userAddress;
+  int age;
+  String userDescription;
+  int totalDaysTookMedicine;
+  int remainindDaysForTreatment;
 
   final List<Medicine> medicineList;
 

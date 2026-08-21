@@ -19,7 +19,7 @@ class _ProfilePageCardState extends State<ProfilePageCard> {
   Widget build(BuildContext context) {
     return Container(
       //height: 100,
-      width: MediaQuery.of(context).size.width * 0.29,
+      width: MediaQuery.of(context).size.width * 0.45,
       decoration: BoxDecoration(
         color: kMainWhite,
         borderRadius: BorderRadius.circular(15),
