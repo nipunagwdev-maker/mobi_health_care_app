@@ -76,113 +76,117 @@ class _SetupPageState extends State<SetupPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kMainWhite.withAlpha(145),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 20),
-                Text(
-                  "Let's get to know you",
-                  style: TextStyle(
-                    color: kMainWhite,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-                const SizedBox(height: 24),
+    return Container(
+      color: kMainColor,
+      child: Scaffold(
+        backgroundColor: kMainWhite.withAlpha(180),
 
-                _buildField(
-                  "Full Name",
-                  nameController,
-                  TextInputType.text,
-                  hint: "Eg : Saman Kumara",
-                ),
-                const SizedBox(height: kMainPadding),
-                _buildField(
-                  "Age",
-                  ageController,
-                  TextInputType.number,
-                  hint: "Eg : 35",
-                ),
-                const SizedBox(height: kMainPadding),
-                _buildField(
-                  "Location",
-                  locationController,
-                  TextInputType.text,
-                  hint: "Eg : Ambalangoda, Galle",
-                ),
-                const SizedBox(height: kMainPadding),
-
-                //adding gender selecting feature to the user as an input
-                Text(
-                  "Gender",
-                  style: TextStyle(
-                    color: kMainWhite,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-                Center(
-                  child: Container(
-                    width: 200,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(child: _genderButton("Male")),
-                        const SizedBox(width: kMainPadding * 1.5),
-                        Expanded(child: _genderButton("Female")),
-                      ],
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 20),
+                  Text(
+                    "Let's get to know you",
+                    style: TextStyle(
+                      color: kMainColor,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w900,
                     ),
                   ),
-                ),
+                  const SizedBox(height: 24),
 
-                const SizedBox(height: kMainPadding),
+                  _buildField(
+                    "Full Name",
+                    nameController,
+                    TextInputType.text,
+                    hint: "Eg : Saman Kumara",
+                  ),
+                  const SizedBox(height: kMainPadding),
+                  _buildField(
+                    "Age",
+                    ageController,
+                    TextInputType.number,
+                    hint: "Eg : 35",
+                  ),
+                  const SizedBox(height: kMainPadding),
+                  _buildField(
+                    "Location",
+                    locationController,
+                    TextInputType.text,
+                    hint: "Eg : Ambalangoda, Galle",
+                  ),
+                  const SizedBox(height: kMainPadding),
 
-                _buildField(
-                  "Phone Number",
-                  phoneController,
-                  TextInputType.phone,
-                  hint: "Eg : 0761178865",
-                ),
-                const SizedBox(height: kMainPadding),
-                _buildField(
-                  "Create 4-digit PIN",
-                  pinController,
-                  TextInputType.number,
-                  isPin: true,
-                  hint: "Eg : 5124",
-                ),
-                const SizedBox(height: kMainPadding * 3),
-
-                Center(
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.25,
-                    child: ElevatedButton(
-                      onPressed: saveProfileAndContinue,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: kMainWhite,
-                        foregroundColor: kMainColor,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-                      child: Text(
-                        "Continue",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 15,
-                        ),
+                  //adding gender selecting feature to the user as an input
+                  Text(
+                    "Gender",
+                    style: TextStyle(
+                      color: kMainColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  Center(
+                    child: Container(
+                      width: 200,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(child: _genderButton("Male")),
+                          const SizedBox(width: kMainPadding * 1.5),
+                          Expanded(child: _genderButton("Female")),
+                        ],
                       ),
                     ),
                   ),
-                ),
-              ],
+
+                  const SizedBox(height: kMainPadding),
+
+                  _buildField(
+                    "Phone Number",
+                    phoneController,
+                    TextInputType.phone,
+                    hint: "Eg : 0761178865",
+                  ),
+                  const SizedBox(height: kMainPadding),
+                  _buildField(
+                    "Create 4-digit PIN",
+                    pinController,
+                    TextInputType.number,
+                    isPin: true,
+                    hint: "Eg : 5124",
+                  ),
+                  const SizedBox(height: kMainPadding * 3),
+
+                  Center(
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.25,
+                      child: ElevatedButton(
+                        onPressed: saveProfileAndContinue,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: kMainWhite.withAlpha(200),
+                          foregroundColor: kMainColor,
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        child: Text(
+                          "Continue",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -203,7 +207,7 @@ class _SetupPageState extends State<SetupPage> {
         Text(
           label,
           style: TextStyle(
-            color: kMainWhite,
+            color: kMainColor,
             fontSize: 12,
             fontWeight: FontWeight.w700,
           ),
@@ -214,13 +218,13 @@ class _SetupPageState extends State<SetupPage> {
           keyboardType: type,
           maxLength: isPin ? 4 : null,
           obscureText: isPin,
-          style: TextStyle(color: kMainWhite),
+          style: TextStyle(color: kMainColor),
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: TextStyle(color: kMainWhite.withAlpha(120)),
+            hintStyle: TextStyle(color: kMainColor.withAlpha(100)),
             counterText: "",
             filled: true,
-            fillColor: kMainWhite.withAlpha(30),
+            fillColor: kMainWhite.withAlpha(125),
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 16,
               vertical: 14,

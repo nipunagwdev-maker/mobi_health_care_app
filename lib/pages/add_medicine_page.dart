@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mobi_health_care_app/constants/colors.dart';
 import 'package:mobi_health_care_app/data/medicine_data.dart';
 import 'package:mobi_health_care_app/models/medicine_model.dart';
-
 import 'package:mobi_health_care_app/data/user_data.dart';
+import 'package:mobi_health_care_app/pages/services/noti_service.dart';
 
 class AddMedicinePage extends StatefulWidget {
   const AddMedicinePage({super.key});
@@ -16,6 +16,16 @@ class _AddMedicinePageState extends State<AddMedicinePage> {
   //make two controllers to handle the user inputs for the medicine name and the dose
   final TextEditingController nameController = TextEditingController();
   final TextEditingController doseController = TextEditingController();
+
+  //notifications
+  final NotiService notiService = NotiService();
+
+  @override
+  void initState() {
+    super.initState();
+
+    notiService.initNotification();
+  }
 
   final userData = user;
 
@@ -258,6 +268,27 @@ class _AddMedicinePageState extends State<AddMedicinePage> {
                             ],
                           ),
                         ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          notiService.showNotification(
+                            title: "Hi!",
+                            body: "Basic notification",
+                          );
+                        },
+                        child: const Text("Test message"),
+                      ),
+
+                      ElevatedButton(
+                        onPressed: () {
+                          notiService.sheduleNotification(
+                            title: "Scheduled Notification",
+                            body: "Hi , i' new notification",
+                            hour: 8,
+                            minute: 4,
+                          );
+                        },
+                        child: Text("Scheduled"),
                       ),
                     ],
                   ),

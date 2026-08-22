@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'package:mobi_health_care_app/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

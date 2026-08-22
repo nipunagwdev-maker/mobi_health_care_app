@@ -43,8 +43,8 @@ class _UserDetailsCardState extends State<UserDetailsCard> {
             const SizedBox(width: 10),
             Text(
               "${widget.titleOfTheCard} : ${widget.contentForTitleCard}",
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-              overflow: TextOverflow.clip,
             ),
           ],
         ),
