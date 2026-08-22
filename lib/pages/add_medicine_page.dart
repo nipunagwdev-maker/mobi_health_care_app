@@ -4,6 +4,7 @@ import 'package:mobi_health_care_app/data/medicine_data.dart';
 import 'package:mobi_health_care_app/models/medicine_model.dart';
 import 'package:mobi_health_care_app/data/user_data.dart';
 import 'package:mobi_health_care_app/pages/services/noti_service.dart';
+import 'package:mobi_health_care_app/widgets/input_data_for_reminder.dart';
 
 class AddMedicinePage extends StatefulWidget {
   const AddMedicinePage({super.key});
@@ -16,6 +17,8 @@ class _AddMedicinePageState extends State<AddMedicinePage> {
   //make two controllers to handle the user inputs for the medicine name and the dose
   final TextEditingController nameController = TextEditingController();
   final TextEditingController doseController = TextEditingController();
+  final TextEditingController notificationTimeHours = TextEditingController();
+  final TextEditingController notificationTimeMinutes = TextEditingController();
 
   //notifications
   final NotiService notiService = NotiService();
@@ -269,26 +272,179 @@ class _AddMedicinePageState extends State<AddMedicinePage> {
                           ),
                         ),
                       ),
-                      ElevatedButton(
-                        onPressed: () {
-                          notiService.showNotification(
-                            title: "Hi!",
-                            body: "Basic notification",
-                          );
-                        },
-                        child: const Text("Test message"),
+
+                      //going to make new text input and have as time
+                      Padding(
+                        padding: const EdgeInsets.all(kMainPadding),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            //taking hours from the user
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              child: TextField(
+                                controller: notificationTimeHours,
+                                //hint text desings
+                                decoration: InputDecoration(
+                                  hintText: "Eg : Hr - 13",
+                                  hintStyle: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.normal,
+                                    color: kMainWhite.withAlpha(75),
+                                  ),
+
+                                  //box design
+                                  filled: true,
+                                  fillColor: kMainWhite,
+                                  contentPadding: EdgeInsets.symmetric(
+                                    horizontal: kMainPadding,
+                                  ),
+
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(14),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(14),
+                                    borderSide: BorderSide(
+                                      color: kSecondaryColor,
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                  //focusColor: kMainBlack.withAlpha(050)
+                                ),
+                                //input text design
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: kMainBlack,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+
+                            //taking minutes from the user
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.35,
+                              child: TextField(
+                                controller: notificationTimeMinutes,
+                                //hint text desings
+                                decoration: InputDecoration(
+                                  hintText: "Eg : min -10",
+                                  hintStyle: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.normal,
+                                    color: kMainWhite.withAlpha(75),
+                                  ),
+
+                                  //box design
+                                  filled: true,
+                                  fillColor: kMainWhite,
+                                  contentPadding: EdgeInsets.symmetric(
+                                    horizontal: kMainPadding,
+                                  ),
+
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(14),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(14),
+                                    borderSide: BorderSide(
+                                      color: kSecondaryColor,
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                  //focusColor: kMainBlack.withAlpha(050)
+                                ),
+                                //input text design
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: kMainBlack,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
 
-                      ElevatedButton(
-                        onPressed: () {
-                          notiService.sheduleNotification(
-                            title: "Scheduled Notification",
-                            body: "Hi , i' new notification",
-                            hour: 8,
-                            minute: 4,
-                          );
-                        },
-                        child: Text("Scheduled"),
+                      //end --> going to make new text input and have as time
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: kMainPadding * 5,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                notiService.showNotification(
+                                  title: "Hi!",
+                                  body: "Basic notification",
+                                );
+                              },
+                              child: const Text("Testing"),
+                            ),
+                            const SizedBox(width: kMainPadding),
+
+                            //button for reminder
+                            ElevatedButton(
+                              onPressed: () {
+                                int? hrsForReminder = int.tryParse(
+                                  notificationTimeHours.text,
+                                );
+                                int? minsForReminder = int.tryParse(
+                                  notificationTimeMinutes.text,
+                                );
+
+                                if (hrsForReminder == null ||
+                                    minsForReminder == null) {
+                                  return; // stop if invalid/empty input
+                                }
+
+                                notiService.sheduleNotification(
+                                  title: "Medication Reminder",
+                                  body: "Time to take your medicine!",
+                                  hour: hrsForReminder,
+                                  minute: minsForReminder,
+                                );
+
+                                /*
+
+                                //this is the code i made
+
+                                int HrsForreminder =
+                                    notificationTimeHours.hashCode;
+                                int MnsForreminder =
+                                    notificationTimeHours.hashCode;
+                                setState(() {
+                                  notiService.sheduleNotification(
+                                    title: "Scheduled Notification",
+                                    body: "Hi , i' new notification",
+                                    hour: HrsForreminder,
+                                    minute: MnsForreminder,
+                                  );
+                                });*/
+                              },
+                              child: Text("Scheduled"),
+                            ),
+
+                            /*
+                            ElevatedButton(
+                              onPressed: () {int HrsForreminder = notificationTimeHours.hashCode;
+                                
+                                notiService.sheduleNotification(
+                                  title: "Scheduled Notification",
+                                  body: "Hi , i' new notification",
+                                  hour: 5,
+                                  minute: 15,
+                                );
+                              },
+                              child: Text("Scheduled"),
+                            ),
+                            */
+                          ],
+                        ),
                       ),
                     ],
                   ),
